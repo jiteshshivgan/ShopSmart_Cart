@@ -10,7 +10,12 @@ class CartItem extends React.Component{
             title: "Phone",
             qty: 1,
             img: "https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg"
+            
         }
+    }
+    //Arrow function will automatically bind the function with the instance of CartItem class
+   increaseQuantity =() =>{
+        console.log("this.state", this.state);
     }
     render(){
         //object destructuring
@@ -26,9 +31,22 @@ class CartItem extends React.Component{
                         <div style={{color:'#777', fontSize: 20 }}>Rs {price}</div>
                         <div style={{color:'#777' }}>Qty: {qty}</div>
                         <div className='cart-item-actions'>
-                           <img alt="increase" className='action-icons' src='https://img.icons8.com/?size=512&id=24717&format=png'/>
-                           <img alt="decrease" className='action-icons' src='https://icon-library.com/images/decrease-icon/decrease-icon-8.jpg'/>
-                           <img alt="delete" className='action-icons' src='https://img.icons8.com/?size=512&id=3062&format=png'/>
+                           <img
+                                alt="increase" 
+                                className='action-icons' 
+                                src='https://img.icons8.com/?size=512&id=24717&format=png'
+                                onClick={this.increaseQuantity}
+                            />
+                           <img 
+                                alt="decrease" 
+                                className='action-icons' 
+                                src='https://icon-library.com/images/decrease-icon/decrease-icon-8.jpg'
+                            />
+                           <img 
+                                alt="delete" 
+                                className='action-icons' 
+                                src='https://img.icons8.com/?size=512&id=3062&format=png'
+                            />
                         </div>
                     </div>
 
