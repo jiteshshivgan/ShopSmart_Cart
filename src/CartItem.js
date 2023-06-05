@@ -1,20 +1,34 @@
 import React from 'react';
 
-//CartItem will inherit some features from component class
+//CartItem will inherit some features from component class of React
 class CartItem extends React.Component{
+    constructor(){
+        // Super is for calling constructor of parent class 
+        super();
+        this.state={
+            price: "10000",
+            title: "Phone",
+            qty: 1,
+            img: "https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg"
+        }
+    }
     render(){
+        //object destructuring
+        const {price, title, qty, img} =this.state;
         return(
             <>
                 <div className='cart-item'>
                     <div className='left-block'>
-                        <img style={styles.image} alt='Item' src='mac.jpg'/>
+                        <img style={styles.image} alt='Item' src={img}/>
                     </div>
                     <div className='right-block'>
-                        <div style={{fontSize:25 }}>Phone</div>
-                        <div style={{color:'#777' }}>Rs 10,000</div>
-                        <div style={{color:'#777' }}>Qty: 1</div>
+                        <div style={{fontSize:30 }}>{title}</div>
+                        <div style={{color:'#777', fontSize: 20 }}>Rs {price}</div>
+                        <div style={{color:'#777' }}>Qty: {qty}</div>
                         <div className='cart-item-actions'>
-                           {/* Buttons */}
+                           <img alt="increase" className='action-icons' src='https://img.icons8.com/?size=512&id=24717&format=png'/>
+                           <img alt="decrease" className='action-icons' src='https://icon-library.com/images/decrease-icon/decrease-icon-8.jpg'/>
+                           <img alt="delete" className='action-icons' src='https://img.icons8.com/?size=512&id=3062&format=png'/>
                         </div>
                     </div>
 
