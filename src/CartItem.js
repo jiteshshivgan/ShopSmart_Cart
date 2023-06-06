@@ -2,17 +2,18 @@ import React from 'react';
 
 //CartItem will inherit some features from component class of React
 class CartItem extends React.Component{
-    constructor(){
-        // Super is for calling constructor of parent class 
-        super();
-        this.state={
-            price: "10000",
-            title: "Phone",
-            qty: 1,
-            img: "https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg"
+    // constructor(){
+    //     // Super is for calling constructor of parent class 
+    //     super();
+    //     this.state={
+    //         price: "10000",
+    //         title: "Phone",
+    //         qty: 1,
+    //         img: "https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg"
             
-        }
-    }
+    //     }
+    // }
+    
     //Arrow function will automatically bind the function with the instance of CartItem class
    increaseQuantity =() =>{
         // console.log("this.state", this.state);
@@ -33,7 +34,7 @@ class CartItem extends React.Component{
             // the secondcall back is for up to date data as setState() function is asynchronous we don't know when it will finish, so after clicking +1 to 2, qty in this.state will come 1 only.
             console.log("this.state", this.state);
         });
-       
+         
     }
 
     decreaseQuantity=()=>{
@@ -48,7 +49,7 @@ class CartItem extends React.Component{
 
     }
 
-    //Now even in promise also batching occurs (just for understanding) | No use of this function in
+    //Now even in promise also batching occurs (just for understanding) | No use of this function in code
     testing=()=>{
         const promise=new Promise((resolve, reject)=>{
             setTimeout(()=>{
@@ -63,8 +64,9 @@ class CartItem extends React.Component{
         })
     }
     render(){
+        console.log("this.prop", this.props);
         //object destructuring
-        const {price, title, qty, img} =this.state;
+        const {price, title, qty, img} =this.props.product;
         return(
             <>
                 <div className='cart-item'>
