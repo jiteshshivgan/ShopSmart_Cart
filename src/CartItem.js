@@ -1,7 +1,7 @@
 import React from 'react';
 
 //CartItem will inherit some features from component class of React
-class CartItem extends React.Component{
+const CartItem =(props)=>{
     // constructor(){
     //     // Super is for calling constructor of parent class 
     //     super();
@@ -48,7 +48,7 @@ class CartItem extends React.Component{
    
 
     //Now even in promise also batching occurs (just for understanding) | No use of this function in code
-    testing=()=>{
+    const testing=()=>{
         const promise=new Promise((resolve, reject)=>{
             setTimeout(()=>{
                 resolve('done');
@@ -61,14 +61,14 @@ class CartItem extends React.Component{
             this.setState({qty: this.state.qty+10});
         })
     }
-    render(){
-        console.log("this.prop", this.props);
+   
+        
         //object destructuring
-        const {price, title, qty, img} =this.props.product;
-        const increaseQuantity=this.props.onIncreaseQuantity;
-        const decreaseQuantity=this.props.onDecreaseQuantity;
-        const deleteQuantity=this.props.onDeleteQuantity;
-        const product=this.props.product;
+        const {price, title, qty, img} =props.product;
+        const increaseQuantity=props.onIncreaseQuantity;
+        const decreaseQuantity=props.onDecreaseQuantity;
+        const deleteQuantity=props.onDeleteQuantity;
+       
         return(
             <>
                 <div className='cart-item'>
@@ -84,19 +84,19 @@ class CartItem extends React.Component{
                                 alt="increase" 
                                 className='action-icons' 
                                 src='https://img.icons8.com/?size=512&id=24717&format=png'
-                                onClick={()=>increaseQuantity(this.props.product)}  
+                                onClick={()=>increaseQuantity(props.product)}  
                             />
                            <img 
                                 alt="decrease" 
                                 className='action-icons' 
                                 src='https://icon-library.com/images/decrease-icon/decrease-icon-8.jpg'
-                                onClick={()=>decreaseQuantity(this.props.product)}
+                                onClick={()=>decreaseQuantity(props.product)}
                             />
                            <img 
                                 alt="delete" 
                                 className='action-icons' 
                                 src='https://img.icons8.com/?size=512&id=3062&format=png'
-                                onClick={()=>deleteQuantity(this.props.product)}
+                                onClick={()=>deleteQuantity(props.product)}
                             />
                         </div>
                     </div>
@@ -106,12 +106,13 @@ class CartItem extends React.Component{
             </>
         );
     }
-}
+
 
 const styles ={
     image: {
-        height: 110,
-        width: 110,
+        height: '100%',
+        width: 210,
+        maxWidth: '100%',
         borderRadius: 4,
         background: "#777"
     }
