@@ -30,8 +30,14 @@ class App extends React.Component {
                 img: "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1207&q=80",
                 id: 3
         }
-]}
+]
+      
 }
+}
+
+
+
+
 increaseQuantity =(product) =>{
     
      console.log("Hey increase the qty of watch", product);
