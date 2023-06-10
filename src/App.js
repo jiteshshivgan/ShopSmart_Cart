@@ -1,41 +1,37 @@
 import React from "react";
 import Cart from "./Cart";
 import Navbar from "./navbar";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { Firestore } from "@firebase/firestore";
 
 class App extends React.Component {
   constructor(){
     // Super is for calling constructor of parent class 
     super();
     this.state={
-    products: [
-        {
-        price: "10000",
-        title: "Phone",
-        qty: 1,
-        img: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-        id: 1
-        
-        },
-        {
-            price: "1000",
-            title: "Watch",
-            qty: 1,
-            img: "https://images.unsplash.com/photo-1622434641406-a158123450f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=704&q=80",
-            id: 2
-        },
-        {
-                price: "9000",
-                title: "Laptop",
-                qty: 1,
-                img: "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1207&q=80",
-                id: 3
-        }
-]
+    products: [],
+    loading: true
       
 }
 }
 
+componentDidMount(){
+  firebase
+    .firestore()
+    .collection('products')
+    .get()
+    .then((snapshot)=>{
+      // console.log(snapshot);
+      snapshot.docs.map((doc)=>{
+        // console.log(doc.data());
+      })
+      const products=snapshot.docs.map((doc)=>doc.data());
 
+      this.setState({products: products, loading: false})
+    })
+}
 
 
 increaseQuantity =(product) =>{
@@ -86,6 +82,7 @@ getCartTotal=()=>{
   return totalAmount;
 }
   render(){
+    const {loading}=this.state;
   return (
     <div className="App">
       <Navbar totalQty={this.getCartCount()}/>
@@ -95,6 +92,7 @@ getCartTotal=()=>{
           onDecreaseQuantity={this.decreaseQuantity} 
           onDeleteQuantity={this.deleteQuantity}
           />
+        {loading && <h1>Loading Products ...</h1>}
       <div style={{fontSize:30, fontWeight: 400, padding: 10}}>Total Amount: {this.getCartTotal()}</div>
     </div>
   );
